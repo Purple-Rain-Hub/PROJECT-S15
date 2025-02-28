@@ -154,3 +154,13 @@ SELECT Cognome, Nome, DataViolazione, IndirizzoViolazione, Importo, Decurtamento
 SELECT Cognome, Nome, DataViolazione, IndirizzoViolazione, Importo, DecurtamentoPunti FROM ANAGRAFICA INNER JOIN VERBALE ON ANAGRAFICA.idanagrafica = VERBALE.idanagrafica WHERE Importo > 200
 
 --FINE PROGETTO BASE
+
+--QUERY EXTRA
+
+--13) Numero di verbali e importo totale delle multe emesse per ogni agente di polizia
+SELECT Nominativo_Agente, COUNT(*) as TOT_VERBALI, SUM(Importo) as TOT_IMPORTO FROM VERBALE GROUP BY Nominativo_Agente
+
+--14) Media degli importi delle multe per tipo di violazione
+SELECT descrizione, AVG(Importo) as AVG_IMPORTO FROM VIOLAZIONE LEFT JOIN VERBALE ON VERBALE.idviolazione = VIOLAZIONE.idviolazione GROUP BY descrizione
+
+--EXTRA FINITI
